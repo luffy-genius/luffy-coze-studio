@@ -29,7 +29,7 @@ export const LoginPage: FC = () => {
   const [password, setPassword] = useState('');
   const [hasError, setHasError] = useState(false);
 
-  const { login, loginLoading } = useLoginService({
+  const { login, loginLoading, registerLoading } = useLoginService({
     email,
     password,
   });
