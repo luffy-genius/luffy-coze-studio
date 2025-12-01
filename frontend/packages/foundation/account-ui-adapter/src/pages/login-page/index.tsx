@@ -29,7 +29,7 @@ export const LoginPage: FC = () => {
   const [password, setPassword] = useState('');
   const [hasError, setHasError] = useState(false);
 
-  const { login, register, loginLoading, registerLoading } = useLoginService({
+  const { login, loginLoading } = useLoginService({
     email,
     password,
   });
@@ -95,26 +95,6 @@ export const LoginPage: FC = () => {
             >
               {I18n.t('login_button_text')}
             </Button>
-            <Button
-              data-testid="login.button.signup"
-              className="mt-[20px]"
-              disabled={submitDisabled || loginLoading}
-              onClick={register}
-              loading={registerLoading}
-              color="primary"
-            >
-              {I18n.t('register')}
-            </Button>
-            <div className="mt-[12px] flex justify-center">
-              <a
-                data-testid="login.link.terms"
-                href="https://github.com/coze-dev/coze-studio?tab=Apache-2.0-1-ov-file"
-                target="_blank"
-                className="no-underline coz-fg-hglt"
-              >
-                {I18n.t('open_source_terms_linkname')}
-              </a>
-            </div>
           </div>
         </div>
       </SignPanel>

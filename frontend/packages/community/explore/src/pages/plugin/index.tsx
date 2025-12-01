@@ -23,7 +23,6 @@ import {
 } from '@coze-community/components';
 import { SearchInput, useUsageModal } from '@coze-community/components';
 import { I18n } from '@coze-arch/i18n';
-import { IconCozDocument } from '@coze-arch/coze-design/icons';
 import { TabBar, Button } from '@coze-arch/coze-design';
 import { ProductEntityType } from '@coze-arch/bot-api/product_api';
 import useUrlState from '@ahooksjs/use-url-state';
@@ -84,21 +83,7 @@ export const PluginPage = () => {
         >
           用量查看
         </Button>
-      ) : (
-        <Button
-          className="mx-[24px]"
-          color="primary"
-          icon={<IconCozDocument />}
-          onClick={() => {
-            window.open(
-              'https://github.com/coze-dev/coze-studio/wiki/4.-%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE',
-              '_blank',
-            );
-          }}
-        >
-          配置 coze.cn 插件
-        </Button>
-      )}
+      ) : null}
     </div>
   );
 

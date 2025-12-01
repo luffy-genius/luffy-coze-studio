@@ -15,7 +15,7 @@
  */
 
 import { Outlet } from 'react-router-dom';
-import { type FC, useEffect } from 'react';
+import { type FC, useEffect, useMemo } from 'react';
 
 import { useUpdate } from 'ahooks';
 import { BrowserUpgradeWrap } from '@coze-foundation/browser-upgrade-banner';
@@ -51,9 +51,18 @@ export const GlobalLayout: FC = () => {
     }
   }, [userInfo, transformedCurrentLocale, update]);
 
+  const isEnglishLocale = currentLocale === 'en-US';
+  const cozeDesignLocale = useMemo(
+    () =>
+      isEnglishLocale
+        ? { ...en_US, platform_name: 'Sailor' }
+        : { ...zh_CN, platform_name: '水手' },
+    [isEnglishLocale],
+  );
+
   return (
     <I18nProvider i18n={I18n}>
-      <CDLocaleProvider locale={currentLocale === 'en-US' ? en_US : zh_CN}>
+      <CDLocaleProvider locale={cozeDesignLocale}>
         <LocaleProvider locale={currentLocale === 'en-US' ? enUS : zhCN}>
           <ThemeProvider
             defaultTheme="light"

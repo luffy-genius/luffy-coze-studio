@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
 
 import classNames from 'classnames';
-import {
-  IconBrandCnWhiteRow,
-  IconBrandCnBlackRow,
-  IconBrandEnBlackRow,
-} from '@coze-arch/bot-icons';
-import { useNavigate } from 'react-router-dom';
+
+import SailorLogo from './sailor-logo.png';
 
 import styles from './index.module.less';
 
@@ -43,26 +40,10 @@ export function CozeBrand({
   const navBack = () => {
     navigate('/');
   };
-  if (isOversea) {
-    return (
-      <IconBrandEnBlackRow
-        onClick={navBack}
-        className={classNames(styles['coze-brand'], className)}
-        style={style}
-      />
-    );
-  }
-  if (isWhite) {
-    return (
-      <IconBrandCnWhiteRow
-        onClick={navBack}
-        className={classNames(styles['coze-brand'], className)}
-        style={style}
-      />
-    );
-  }
   return (
-    <IconBrandCnBlackRow
+    <img
+      src={SailorLogo}
+      alt="水手智能"
       onClick={navBack}
       className={classNames(styles['coze-brand'], className)}
       style={style}
