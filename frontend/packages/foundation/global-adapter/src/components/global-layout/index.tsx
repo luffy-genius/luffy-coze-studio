@@ -21,7 +21,6 @@ import { useUpdate } from 'ahooks';
 import { BrowserUpgradeWrap } from '@coze-foundation/browser-upgrade-banner';
 import { I18nProvider } from '@coze-arch/i18n/i18n-provider';
 import { I18n } from '@coze-arch/i18n';
-import { useUserInfo } from '@coze-arch/foundation-sdk';
 import { zh_CN, en_US } from '@coze-arch/coze-design/locales';
 import {
   CDLocaleProvider,
@@ -33,23 +32,23 @@ import { LocaleProvider } from '@coze-arch/bot-semi';
 
 import { GlobalLayoutComposed } from '@/components/global-layout-composed';
 
+const FORCED_LOCALE = 'zh-CN';
+
 export const GlobalLayout: FC = () => {
-  const userInfo = useUserInfo();
   const update = useUpdate();
-  const currentLocale = userInfo?.locale ?? navigator.language ?? 'en-US';
+  const currentLocale = FORCED_LOCALE;
 
   // For historical reasons, en-US needs to be converted to en.
-  const transformedCurrentLocale =
-    currentLocale === 'en-US' ? 'en' : currentLocale;
+  const transformedCurrentLocale = currentLocale;
 
   useEffect(() => {
-    if (userInfo && I18n.language !== transformedCurrentLocale) {
+    if (I18n.language !== transformedCurrentLocale) {
       localStorage.setItem('i18next', transformedCurrentLocale);
       I18n.setLang(transformedCurrentLocale);
       // Force an update, otherwise the language switch will not take effect
       update();
     }
-  }, [userInfo, transformedCurrentLocale, update]);
+  }, [transformedCurrentLocale, update]);
 
   const isEnglishLocale = currentLocale === 'en-US';
   const cozeDesignLocale = useMemo(
