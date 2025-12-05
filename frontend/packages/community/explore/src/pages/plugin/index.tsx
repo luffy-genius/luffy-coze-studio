@@ -21,9 +21,9 @@ import {
   type PluginCardProps,
   PluginCardSkeleton,
 } from '@coze-community/components';
-import { SearchInput, useUsageModal } from '@coze-community/components';
+import { SearchInput } from '@coze-community/components';
 import { I18n } from '@coze-arch/i18n';
-import { TabBar, Button } from '@coze-arch/coze-design';
+import { TabBar } from '@coze-arch/coze-design';
 import { ProductEntityType } from '@coze-arch/bot-api/product_api';
 import useUrlState from '@ahooksjs/use-url-state';
 
@@ -41,10 +41,6 @@ const entityTypeMap = {
 };
 
 export const PluginPage = () => {
-  const { node: usageInvokeModal, open: openUsageInvokeModal } = useUsageModal(
-    {},
-  );
-
   const { data: enableSaaSPlugin } = useRequest(async () => {
     const res = await explore.PublicGetMarketPluginConfig({});
     return res.data?.enable_saas_plugin || false;
@@ -74,16 +70,6 @@ export const PluginPage = () => {
           <TabPanel tab="Coze插件" itemKey={PluginCateTab.Coze} />
         ) : null}
       </TabBar>
-      {tab === PluginCateTab.Coze ? (
-        <Button
-          className="mx-[24px]"
-          onClick={() => {
-            openUsageInvokeModal();
-          }}
-        >
-          用量查看
-        </Button>
-      ) : null}
     </div>
   );
 
@@ -109,7 +95,6 @@ export const PluginPage = () => {
         renderCard={data => <PluginCard {...(data as PluginCardProps)} />}
         renderCardSkeleton={() => <PluginCardSkeleton />}
       />
-      {usageInvokeModal}
     </>
   );
 };

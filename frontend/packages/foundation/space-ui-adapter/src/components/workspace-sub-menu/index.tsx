@@ -17,7 +17,6 @@
 import { WorkspaceSubMenu as BaseWorkspaceSubMenu } from '@coze-foundation/space-ui-base';
 import { useSpaceStore } from '@coze-foundation/space-store';
 import { I18n } from '@coze-arch/i18n';
-import { useRouteConfig } from '@coze-arch/bot-hooks';
 import {
   IconCozBot,
   IconCozBotFill,
@@ -25,6 +24,7 @@ import {
   IconCozKnowledgeFill,
 } from '@coze-arch/coze-design/icons';
 import { Space, Avatar, Typography } from '@coze-arch/coze-design';
+import { useRouteConfig } from '@coze-arch/bot-hooks';
 
 import { SpaceSubModuleEnum } from '@/const';
 
@@ -64,7 +64,7 @@ export const WorkspaceSubMenu = () => {
           ellipsis={{ showTooltip: true, rows: 1 }}
           className="flex-1 coz-fg-primary text-[14px] font-[500]"
         >
-          {currentSpace?.name || ''}
+          个人空间
         </Typography.Text>
       </Space>
     </div>
